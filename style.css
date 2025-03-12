@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 150px;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 50px;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  padding: 60px;
+  border-radius: 100px;
+  margin-right: 60px;
+
+  cursor: pointer;
+
+  font-size: 25px;
+}
+
+#rock:hover,
+#paper:hover,
+#scissors:hover {
+  background: lightskyblue;
+}
