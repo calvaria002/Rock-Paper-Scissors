@@ -21,11 +21,15 @@ h1 {
 main {
   display: flex;
   justify-content: space-around;
+  margin-bottom: 30px;
 }
 
 button {
-  padding: 60px;
-  border-radius: 100px;
+  /* padding: 60px; */
+  width: 150px;
+  height: 150px;
+
+  border-radius: 70px;
   margin-right: 60px;
 
   cursor: pointer;
