@@ -3,11 +3,25 @@ const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
 const clear = document.getElementById("clear");
 
-const score = {
+// const score = {
+//   wins: 0,
+//   losses: 0,
+//   draw: 0,
+// };
+
+let score = JSON.parse(localStorage.getItem("score")) || {
   wins: 0,
-  losses: 0,
   draw: 0,
+  losses: 0,
 };
+
+// if (score === null) {
+//   score = {
+//     wins: 0,
+//     draw: 0,
+//     losses: 0,
+//   };
+// }
 
 function onRock() {
   playGame(rock);
@@ -61,6 +75,9 @@ function playGame(playerMove) {
   } else if ("HAHAHA you lost") {
     score.losses += 1;
   }
+
+  localStorage.setItem("score", JSON.stringify(score));
+
   alert(`${result}
   Wins: ${score.wins}, Losses:${score.losses}, Ties: ${score.draw}`);
 }
@@ -84,7 +101,14 @@ function onClear() {
   (score.wins = 0), (score.losses = 0), (score.draw = 0);
   alert(`Game Reset
     Wins: ${score.wins}, Losses:${score.losses}, Ties: ${score.draw}`);
+
+  localStorage.removeItem("score");
 }
+
+rock.addEventListener("click", onRock);
+paper.addEventListener("click", onPaper);
+scissors.addEventListener("click", onScissors);
+clear.addEventListener("click", onClear);
 
 // function onRock() {
 //   const rock = Math.floor(Math.random() * 3 + 1);
@@ -148,8 +172,3 @@ function onClear() {
 //     console.log("Computter plays SCISSORS!!, Its a draw ");
 //   }
 // }
-
-rock.addEventListener("click", onRock);
-paper.addEventListener("click", onPaper);
-scissors.addEventListener("click", onScissors);
-clear.addEventListener("click", onClear);
