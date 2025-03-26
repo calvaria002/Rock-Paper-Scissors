@@ -2,6 +2,7 @@ const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
 const clear = document.getElementById("clear");
+const autoPlay = document.getElementById("autoplay")
 
 // const score = {
 //   wins: 0,
@@ -96,6 +97,26 @@ function playGame(playerMove) {
   `;
 }
 
+let isAutoPlaying = false;
+let intervalid;
+
+function onAutoPlay(){
+  if (!isAutoPlaying) {
+    intervalid = setInterval(function(){
+      const playerMove = compMove();
+      playGame(playerMove);
+
+  }, 1000);
+  isAutoPlaying = true
+
+  }else{
+    clearInterval(intervalid);
+ isAutoPlaying = false }
+  
+
+  }
+
+
 function compMove() {
   const randomNumber = Math.ceil(Math.random() * 9);
   let computerMove;
@@ -133,6 +154,8 @@ rock.addEventListener("click", onRock);
 paper.addEventListener("click", onPaper);
 scissors.addEventListener("click", onScissors);
 clear.addEventListener("click", onClear);
+autoPlay.addEventListener("click", onAutoPlay);
+
 
 // function onRock() {
 //   const rock = Math.floor(Math.random() * 3 + 1);

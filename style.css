@@ -60,7 +60,7 @@ main button:hover {
   margin-top: 20px;
 }
 
-#clear {
+#clear, #autoplay {
   margin-top: 20px;
   border: 0;
 
