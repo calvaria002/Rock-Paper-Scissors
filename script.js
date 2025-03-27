@@ -24,9 +24,9 @@ let score = JSON.parse(localStorage.getItem("score")) || {
 //   };
 // }
 
-function onRock() {
-  playGame("rock");
-}
+// function onRock() {
+//   playGame("rock");
+// }
 function onPaper() {
   playGame("paper");
 }
@@ -100,21 +100,21 @@ function playGame(playerMove) {
 let isAutoPlaying = false;
 let intervalid;
 
-function onAutoPlay(){
-  if (!isAutoPlaying) {
-    intervalid = setInterval(function(){
-      const playerMove = compMove();
-      playGame(playerMove);
+// function onAutoPlay(){
+//   if (!isAutoPlaying) {
+//     intervalid = setInterval(() =>{
+//       const playerMove = compMove();
+//       playGame(playerMove);
 
-  }, 1000);
-  isAutoPlaying = true
+//   }, 1000);
+//   isAutoPlaying = true
 
-  }else{
-    clearInterval(intervalid);
- isAutoPlaying = false }
+//   }else{
+//     clearInterval(intervalid);
+//  isAutoPlaying = false }
   
 
-  }
+//   }
 
 
 function compMove() {
@@ -132,15 +132,15 @@ function compMove() {
   return computerMove;
 }
 
-function onClear() {
-  (score.wins = 0), (score.losses = 0), (score.draw = 0);
+// function onClear() {
+//   (score.wins = 0), (score.losses = 0), (score.draw = 0);
 
-  scoreUpdate();
+//   scoreUpdate();
 
-  document.querySelector(".game-result").innerHTML = " Game reset";
+//   document.querySelector(".game-result").innerHTML = " Game reset";
 
-  localStorage.removeItem("score");
-}
+//   localStorage.removeItem("score");
+// }
 
 function scoreUpdate() {
   const gameInfo = document.querySelector(".game-info");
@@ -150,72 +150,56 @@ function scoreUpdate() {
    Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.draw}`;
 }
 
-rock.addEventListener("click", onRock);
-paper.addEventListener("click", onPaper);
-scissors.addEventListener("click", onScissors);
-clear.addEventListener("click", onClear);
-autoPlay.addEventListener("click", onAutoPlay);
+// ------------------------EVENT LISTENERS
+
+rock.addEventListener("click", () => {
+  playGame("rock");
+} );
 
 
-// function onRock() {
-//   const rock = Math.floor(Math.random() * 3 + 1);
-//   let computerMove;
+paper.addEventListener("click", () => {
+  playGame("paper");
+});
 
-//   if (rock === 1) {
-//     computerMove = rock;
-//   } else if (rock === 2) {
-//     computerMove = paper;
-//   } else if (computerMove === 3) {
-//     computerMove = scissors;
-//   }
+scissors.addEventListener("click", () => {
+  playGame("scissors");
+});
 
-//   if (computerMove === rock) {
-//     console.log("Computer plays ROCK!!, Its a draw ");
-//   } else if (computerMove === paper) {
-//     console.log("Computer plays PAPER!!, HAHAHA you lost ");
-//   } else {
-//     console.log("Computer plays SCISSORS!!, Damn you won");
-//   }
-// }
+document.body.addEventListener("keydown", () => {
+  if (event.key === "P" || event.key === "p" ) {
+    playGame("paper");
+  }else if (event.key === "s" || event.key === "S" ) {
+    playGame("scissors");
+  }else if (event.key === "r" || event.key === "R" ) {
+    playGame("rock");
+  }
+});
 
-// function onPaper() {
-//   const paper = Math.ceil(Math.random() * 3);
-//   let computerMove;
 
-//   if (paper === 1) {
-//     computerMove = rock;
-//   } else if (paper === 2) {
-//     computerMove = paper;
-//   } else {
-//     computerMove = scissors;
-//   }
+clear.addEventListener("click", () => {
+   (score.wins = 0), (score.losses = 0), (score.draw = 0);
 
-//   if (computerMove === rock) {
-//     console.log("Computer plays ROCK!!, Damn you won");
-//   } else if (computerMove === paper) {
-//     console.log("Computer plays PAPER!!, Its a draw");
-//   } else {
-//     console.log("Computer plays SCISSORS!!, HAHAHA you lost");
-//   }
-// }
+  scoreUpdate();
 
-// function onScissors() {
-//   const scissors = Math.ceil(Math.random() * 3);
-//   let computerMove;
+  document.querySelector(".game-result").innerHTML = " Game reset";
 
-//   if (scissors === 1) {
-//     computerMove = rock;
-//   } else if (scissors === 2) {
-//     computerMove = paper;
-//   } else {
-//     computerMove = scissors;
-//   }
+  localStorage.removeItem("score");
+});
 
-//   if (computerMove === rock) {
-//     console.log("Computer plays ROCK!!, HAHAHA you lost ");
-//   } else if (computerMove === paper) {
-//     console.log("Computer plays PAPER!!, Damn you won ");
-//   } else {
-//     console.log("Computter plays SCISSORS!!, Its a draw ");
-//   }
-// }
+autoPlay.addEventListener("click", () => {
+  if (!isAutoPlaying) {
+    intervalid = setInterval(() =>{
+      const playerMove = compMove();
+      playGame(playerMove);
+
+  }, 1000);
+  isAutoPlaying = true
+ 
+  }else{
+    clearInterval(intervalid);
+ isAutoPlaying = false }
+});
+
+
+
+
