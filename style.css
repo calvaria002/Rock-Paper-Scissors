@@ -71,3 +71,19 @@ main button:hover {
 
   cursor: pointer;
 }
+
+.reset{
+  display: none;
+  margin-top: 15px;
+  font-size: 20px;
+  
+}
+
+.reset button {
+  padding: 10px;
+  border: none;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}

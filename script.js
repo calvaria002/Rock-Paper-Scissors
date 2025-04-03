@@ -3,6 +3,9 @@ const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
 const clear = document.getElementById("clear");
 const autoPlay = document.getElementById("autoplay")
+const yes = document.querySelector(".yes");
+const no = document.querySelector(".no");
+
 
 // const score = {
 //   wins: 0,
@@ -152,6 +155,8 @@ function scoreUpdate() {
 
 // ------------------------EVENT LISTENERS
 
+// ------------------------ BUTTON EVENT LISTENERS
+
 rock.addEventListener("click", () => {
   playGame("rock");
 } );
@@ -165,6 +170,52 @@ scissors.addEventListener("click", () => {
   playGame("scissors");
 });
 
+
+clear.addEventListener("click", () => {
+
+const reset = document.querySelector(".reset")
+reset.style.display = "block";
+
+});
+
+autoPlay.addEventListener("click", () => {
+  if (!isAutoPlaying) {
+
+    autoPlay.innerHTML = "Stop Playing"
+
+    intervalid = setInterval(() =>{
+      const playerMove = compMove();
+      playGame(playerMove);
+
+  }, 1000);
+  isAutoPlaying = true
+ 
+  }else{
+    autoPlay.innerHTML = "Auto Play"
+    clearInterval(intervalid);
+ isAutoPlaying = false }
+});
+
+yes.addEventListener("click", () => {
+  const reset = document.querySelector(".reset")
+reset.style.display = "none";
+
+ (score.wins = 0), (score.losses = 0), (score.draw = 0);
+
+  scoreUpdate();
+
+  document.querySelector(".game-result").innerHTML = " Game reset";
+
+  localStorage.removeItem("score");
+})
+
+no.addEventListener ("click", () => {
+  const reset = document.querySelector(".reset")
+reset.style.display = "none";
+})
+
+  //------------------------- BODY EVENT LISTENER 
+
 document.body.addEventListener("keydown", () => {
   if (event.key === "P" || event.key === "p" ) {
     playGame("paper");
@@ -175,31 +226,12 @@ document.body.addEventListener("keydown", () => {
   }
 });
 
-
-clear.addEventListener("click", () => {
-   (score.wins = 0), (score.losses = 0), (score.draw = 0);
-
-  scoreUpdate();
-
-  document.querySelector(".game-result").innerHTML = " Game reset";
-
-  localStorage.removeItem("score");
-});
-
-autoPlay.addEventListener("click", () => {
-  if (!isAutoPlaying) {
-    intervalid = setInterval(() =>{
-      const playerMove = compMove();
-      playGame(playerMove);
-
-  }, 1000);
-  isAutoPlaying = true
- 
-  }else{
-    clearInterval(intervalid);
- isAutoPlaying = false }
-});
-
+document.body.addEventListener("keydown", () => {
+  if ( event.key === "Backspace") {
+    const reset = document.querySelector(".reset")
+reset.style.display = "block";
+  }
+} )
 
 
 
